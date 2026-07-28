@@ -54,7 +54,7 @@ export default function Footer() {
             <GithubIcon />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/shahilmahmudswad/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"

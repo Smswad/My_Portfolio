@@ -106,7 +106,7 @@ export default function Contact() {
                     <ExternalLink className="h-3.5 w-3.5 text-gray-500" />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/shahilmahmudswad/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-sm font-medium"
