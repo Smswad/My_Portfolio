@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, ExternalLink } from 'lucide-react';
+import { Mail, Send, CheckCircle, AlertCircle, ExternalLink, Loader2 } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
+import { supabase } from '@/lib/supabase';
 
 const GithubIcon = () => (
   <svg
@@ -42,11 +43,25 @@ const LinkedinIcon = () => (
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
+    setLoading(true);
+    setError(null);
+
+    const { error: supabaseError } = await supabase
+      .from('messages')
+      .insert([{ name: formData.name, email: formData.email, message: formData.message }]);
+
+    setLoading(false);
+
+    if (supabaseError) {
+      setError('Something went wrong. Please try again or email me directly.');
+    } else {
       setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
     }
   };
 
@@ -131,10 +146,7 @@ export default function Contact() {
                     Your message has been recorded. I&apos;ll get back to you as soon as possible at <span className="text-accent">{formData.email}</span>!
                   </p>
                   <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: '', email: '', message: '' });
-                    }}
+                    onClick={() => setSubmitted(false)}
                     className="mt-4 px-6 py-2.5 rounded-full text-xs font-mono text-accent border border-accent/40 hover:bg-accent/10 transition-colors"
                   >
                     Send Another Message
@@ -189,12 +201,30 @@ export default function Contact() {
                     ></textarea>
                   </div>
 
+                  {/* Error Banner */}
+                  {error && (
+                    <div className="flex items-start gap-3 px-4 py-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm">
+                      <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" aria-hidden="true" />
+                      <span>{error}</span>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-sm bg-accent text-[#0B1B3A] hover:bg-blue-400 transition-all shadow-lg hover:shadow-accent/30"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-sm bg-accent text-[#0B1B3A] hover:bg-blue-400 transition-all shadow-lg hover:shadow-accent/30 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="h-4 w-4" />
-                    Send Message
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" aria-hidden="true" />
+                        Send Message
+                      </>
+                    )}
                   </button>
                 </form>
               )}
