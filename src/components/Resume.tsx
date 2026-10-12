@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Download, ExternalLink, FileText, Eye, EyeOff, GraduationCap, Briefcase } from 'lucide-react';
+import { Download, ExternalLink, FileText, Eye, EyeOff, GraduationCap, Briefcase, Award } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
 
 export default function Resume() {
@@ -9,16 +9,16 @@ export default function Resume() {
 
   const experiences = [
     {
-      role: "Aspiring Software Developer & MERN Stack Developer",
-      organization: "East West University / Academic & Independent Projects",
-      date: "2022 - Present",
-      description: "Architected full-stack web applications like NexusBuild (CSE412) and FixMyCity. Specialized in React.js, Node.js, Express, MongoDB, and MySQL with responsive UI/UX designs.",
+      role: "Aspiring Software Developer & Desktop Client Engineer",
+      organization: "Bespoke Client & Independent Projects",
+      date: "2023 - Present",
+      description: "Engineered Kundonika Order Manager, an offline/cloud-hybrid Electron desktop system featuring Supabase PostgreSQL authentication, IPC save dialogs, and automated receipt rendering. Built responsive MERN web platforms including FixMyCity and NexusBuild.",
     },
     {
       role: "Community & Operations Coordination",
       organization: "Online Community Management",
       date: "2021 - Present",
-      description: "Managed large-scale online communities ranging from 1,000 to 10,000+ members. Coordinated teams, enforced engagement strategies, and streamlined digital operations.",
+      description: "Managed large-scale online communities ranging from 1,000 to 10,000+ members. Coordinated cross-functional teams, resolved operational disputes, and enforced high-engagement digital initiatives.",
     },
   ];
 
@@ -26,8 +26,16 @@ export default function Resume() {
     {
       degree: "B.Sc. in Computer Science & Engineering",
       institution: "East West University",
-      date: "Final Year Student",
-      details: "Focusing on Software Engineering, Web Technologies, Database Systems, and System Design.",
+      status: "Final Year Student",
+      period: "2021 - Present",
+      details: "Focusing on Software Engineering, Database Management Systems, System Design, Algorithms, and Web Technologies. Developed academic capstone project (NexusBuild) under faculty supervision.",
+    },
+    {
+      degree: "Higher Secondary Certificate (HSC)",
+      institution: "Dhaka Board, Bangladesh",
+      status: "Completed",
+      period: "Science Division",
+      details: "Rigorous coursework in Mathematics, Physics, Chemistry, and Information & Communication Technology.",
     },
   ];
 
@@ -39,11 +47,11 @@ export default function Resume() {
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-white flex items-center">
-                <span className="text-accent font-mono text-xl md:text-2xl mr-3">04.</span> Resume / CV
+                <span className="text-accent font-mono text-xl md:text-2xl mr-3">04.</span> Experience &amp; Education
                 <div className="ml-6 h-px bg-gray-700 flex-grow max-w-xs hidden sm:block"></div>
               </h2>
               <p className="text-gray-400 font-light mt-2 ml-12 md:ml-14">
-                Explore my background, education, and technical experience.
+                Academic qualifications, technical work, and leadership background.
               </p>
             </div>
 
@@ -132,12 +140,12 @@ export default function Resume() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Experience Column */}
           <FadeIn direction="up" delay={0.15}>
-            <div className="bg-navy-800/40 border border-gray-700/50 rounded-2xl p-7">
+            <div className="bg-navy-800/40 border border-gray-700/50 rounded-2xl p-7 h-full">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-700/50">
                 <div className="p-2.5 rounded-xl bg-accent/10">
                   <Briefcase className="h-6 w-6 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-wide">Key Experience</h3>
+                <h3 className="text-xl font-bold text-white tracking-wide">Professional &amp; Project Experience</h3>
               </div>
 
               <div className="relative border-l border-gray-700/80 ml-3 space-y-8 pl-6">
@@ -160,23 +168,28 @@ export default function Resume() {
 
           {/* Education Column */}
           <FadeIn direction="up" delay={0.25}>
-            <div className="bg-navy-800/40 border border-gray-700/50 rounded-2xl p-7">
+            <div className="bg-navy-800/40 border border-gray-700/50 rounded-2xl p-7 h-full">
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-700/50">
                 <div className="p-2.5 rounded-xl bg-accent/10">
                   <GraduationCap className="h-6 w-6 text-accent" />
                 </div>
-                <h3 className="text-xl font-bold text-white tracking-wide">Education</h3>
+                <h3 className="text-xl font-bold text-white tracking-wide">Educational Qualifications</h3>
               </div>
 
               <div className="relative border-l border-gray-700/80 ml-3 space-y-8 pl-6">
                 {education.map((edu, idx) => (
                   <div key={idx} className="relative group">
                     <span className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full bg-accent ring-4 ring-navy-900"></span>
-                    <h4 className="text-base font-bold text-white group-hover:text-accent transition-colors">
-                      {edu.degree}
-                    </h4>
+                    <div className="flex items-baseline justify-between gap-2">
+                      <h4 className="text-base font-bold text-white group-hover:text-accent transition-colors">
+                        {edu.degree}
+                      </h4>
+                      <span className="text-[11px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 whitespace-nowrap">
+                        {edu.status}
+                      </span>
+                    </div>
                     <p className="text-xs font-mono text-accent/90 mt-0.5">{edu.institution}</p>
-                    <p className="text-xs text-gray-500 font-mono mb-2">{edu.date}</p>
+                    <p className="text-xs text-gray-500 font-mono mb-2">{edu.period}</p>
                     <p className="text-gray-400 text-sm font-light leading-relaxed">
                       {edu.details}
                     </p>

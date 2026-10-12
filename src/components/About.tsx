@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Users, Code2, Globe } from 'lucide-react';
+import { GraduationCap, Users, Code2, Globe, Heart, Compass, Sparkles } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
 
 const highlights = [
@@ -10,18 +10,18 @@ const highlights = [
   },
   {
     icon: <Code2 className="h-6 w-6 text-accent" />,
-    label: "MERN Stack",
-    sub: "Full-Stack Development",
+    label: "Full-Stack & Desktop",
+    sub: "MERN, Next.js & Electron",
   },
   {
     icon: <Users className="h-6 w-6 text-accent" />,
     label: "10,000+ Members",
-    sub: "Community Management",
+    sub: "Online Community Management",
   },
   {
     icon: <Globe className="h-6 w-6 text-accent" />,
-    label: "Operations",
-    sub: "Coordination & Leadership",
+    label: "Operations & Leadership",
+    sub: "Bridging Tech & People",
   },
 ];
 
@@ -37,31 +37,28 @@ export default function About() {
           </h2>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
           {/* Bio Text */}
           <FadeIn direction="up" delay={0.1}>
             <div className="space-y-6 text-gray-300 text-lg font-light leading-relaxed">
               <p>
                 I&apos;m a <span className="text-white font-medium">final-year Computer Science and Engineering student</span> at{' '}
-                <span className="text-accent font-medium">East West University</span>, working toward a career in software development.
+                <span className="text-accent font-medium">East West University</span>, passionately working toward building a long-term career as a software engineer.
               </p>
               <p>
-                Experienced in <span className="text-white font-medium">MERN stack development</span> and in managing{' '}
-                <span className="text-white font-medium">large-scale online communities</span> (1,000–10,000+ members),
-                combining technical and people-facing skills.
+                My background bridges both <span className="text-white font-medium">technical development</span> (MERN stack, Next.js, and Electron desktop applications) and <span className="text-white font-medium">large-scale operations</span>, having managed active online communities spanning 1,000 to 10,000+ members.
               </p>
               <p>
-                I thrive at the intersection of engineering and leadership — writing clean, scalable code while 
-                coordinating teams and fostering communities that matter.
+                I thrive at the intersection of engineering rigor and human connection — writing clean, maintainable code while coordinating cross-functional teams to solve real-world problems.
               </p>
 
-              <div className="pt-4">
+              <div className="pt-2">
                 <a
                   href="#contact"
                   id="about-cta-btn"
                   className="inline-flex items-center text-accent font-mono text-sm hover:text-blue-300 transition-colors group"
                 >
-                  Let&apos;s work together
+                  Let&apos;s build something impactful together
                   <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </a>
               </div>
@@ -86,6 +83,48 @@ export default function About() {
                   </div>
                 </div>
               ))}
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Narrative Deep Dive: Journey, Interests, Beyond the Code */}
+        <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-gray-700/50">
+          {/* The Journey */}
+          <FadeIn direction="up" delay={0.1}>
+            <div className="bg-navy-800/30 border border-gray-700/40 rounded-2xl p-6 h-full space-y-3">
+              <div className="flex items-center gap-2.5 text-accent">
+                <Compass className="h-5 w-5" />
+                <h3 className="font-bold text-white text-base tracking-wide">My Journey</h3>
+              </div>
+              <p className="text-gray-400 text-sm font-light leading-relaxed">
+                What began as a fascination with how digital tools shape human communication quickly transformed into a disciplined pursuit of Software Engineering at East West University. Building academic capstones and bespoke client systems has honed my ability to turn ambiguous business requirements into scalable, resilient architectures.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Technical Interests */}
+          <FadeIn direction="up" delay={0.2}>
+            <div className="bg-navy-800/30 border border-gray-700/40 rounded-2xl p-6 h-full space-y-3">
+              <div className="flex items-center gap-2.5 text-emerald-400">
+                <Sparkles className="h-5 w-5" />
+                <h3 className="font-bold text-white text-base tracking-wide">Technical Interests</h3>
+              </div>
+              <p className="text-gray-400 text-sm font-light leading-relaxed">
+                I am drawn to full-stack architectures, hybrid offline/cloud desktop clients, and intuitive user experiences. Whether developing civic engagement tools, real-estate infrastructure portals, or boutique enterprise desktop software, I enjoy creating software that is dependable, elegant, and straightforward to use.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Beyond the Code */}
+          <FadeIn direction="up" delay={0.3}>
+            <div className="bg-navy-800/30 border border-gray-700/40 rounded-2xl p-6 h-full space-y-3">
+              <div className="flex items-center gap-2.5 text-rose-400">
+                <Heart className="h-5 w-5" />
+                <h3 className="font-bold text-white text-base tracking-wide">Beyond the Code</h3>
+              </div>
+              <p className="text-gray-400 text-sm font-light leading-relaxed">
+                Outside the code editor, you&apos;ll find me actively orchestrating online communities, discussing tech trends, reading about product operations, and exploring visual design. I believe having balanced hobbies and strong interpersonal communication is what makes a great developer truly effective.
+              </p>
             </div>
           </FadeIn>
         </div>

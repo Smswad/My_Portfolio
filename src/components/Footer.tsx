@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail } from 'lucide-react';
+import { Mail, Phone, MessageCircle } from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
 
 export default function Footer() {
@@ -8,8 +8,8 @@ export default function Footer() {
   const GithubIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -25,8 +25,8 @@ export default function Footer() {
   const LinkedinIcon = () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -40,16 +40,32 @@ export default function Footer() {
     </svg>
   );
 
+  const FacebookIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  );
+
   return (
-    <footer className="py-10 text-center text-gray-400 font-mono text-sm border-t border-gray-800/80 bg-navy-900/60">
+    <footer className="py-12 text-center text-gray-400 font-mono text-sm border-t border-gray-800/80 bg-navy-900/60">
       <FadeIn direction="up" delay={0} distance={16}>
-        <div className="flex justify-center items-center space-x-6 mb-6">
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-6">
           <a
             href="https://github.com/Smswad"
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
-            aria-label="GitHub"
+            aria-label="GitHub Profile"
           >
             <GithubIcon />
           </a>
@@ -58,20 +74,56 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
-            aria-label="LinkedIn"
+            aria-label="LinkedIn Profile"
           >
             <LinkedinIcon />
+          </a>
+          <a
+            href="https://www.facebook.com/swadtheboss.2002/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
+            aria-label="Facebook Profile"
+          >
+            <FacebookIcon />
+          </a>
+          <a
+            href="https://wa.me/8801768007685"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
+            aria-label="WhatsApp Message"
+          >
+            <MessageCircle className="w-4 h-4" />
+          </a>
+          <a
+            href="tel:+8801768007685"
+            className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
+            aria-label="Call Phone"
+          >
+            <Phone className="w-4 h-4" />
           </a>
           <a
             href="mailto:smswad2002@gmail.com"
             className="p-2.5 rounded-full bg-navy-800 border border-gray-700/60 text-gray-300 hover:text-accent hover:border-accent transition-all duration-200"
             aria-label="Email"
           >
-            <Mail className="w-5 h-5" />
+            <Mail className="w-4 h-4" />
           </a>
         </div>
+
+        {/* Quick Nav Links */}
+        <div className="flex flex-wrap justify-center gap-6 mb-4 text-xs text-gray-400">
+          <a href="#hero" className="hover:text-accent transition-colors">Home</a>
+          <a href="#about" className="hover:text-accent transition-colors">About</a>
+          <a href="#projects" className="hover:text-accent transition-colors">Projects</a>
+          <a href="#skills" className="hover:text-accent transition-colors">Skills</a>
+          <a href="#resume" className="hover:text-accent transition-colors">Resume &amp; Education</a>
+          <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
+        </div>
+
         <p className="text-gray-400 text-xs">
-          Built with <span className="text-accent">Next.js</span> &amp; <span className="text-accent">Tailwind CSS</span>
+          Built with <span className="text-accent">Next.js</span>, <span className="text-accent">Tailwind CSS</span> &amp; <span className="text-accent">Supabase</span>
         </p>
         <p className="mt-2 text-gray-500 text-xs">
           &copy; {currentYear} Shahil Mahmud Swad. All rights reserved.

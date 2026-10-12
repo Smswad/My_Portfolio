@@ -1,15 +1,26 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, AlertCircle, ExternalLink, Loader2 } from 'lucide-react';
+import { 
+  Mail, 
+  Send, 
+  CheckCircle, 
+  AlertCircle, 
+  ExternalLink, 
+  Loader2, 
+  Phone, 
+  MessageCircle,
+  Copy,
+  Check
+} from 'lucide-react';
 import FadeIn from '@/components/FadeIn';
 import { supabase } from '@/lib/supabase';
 
 const GithubIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -25,8 +36,8 @@ const GithubIcon = () => (
 const LinkedinIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -40,11 +51,38 @@ const LinkedinIcon = () => (
   </svg>
 );
 
+const FacebookIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
+
 export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+
+  const phoneNumber = "+8801768007685";
+  const displayPhone = "01768007685";
+  const whatsappUrl = "https://wa.me/8801768007685";
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -75,60 +113,129 @@ export default function Contact() {
             <div className="ml-6 h-px bg-gray-700 flex-grow max-w-xs hidden sm:block"></div>
           </h2>
           <p className="text-gray-400 font-light mb-12 ml-12 md:ml-14 max-w-xl">
-            Whether you have a project in mind, a question, or just want to connect, feel free to reach out!
+            Whether you have a software development opportunity, collaborative project, or inquiry, my channels are always open!
           </p>
         </FadeIn>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left Column: Direct Contact & Info */}
           <FadeIn direction="up" delay={0.1}>
-            <div className="space-y-8">
+            <div className="space-y-6">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Let&apos;s talk about your next project</h3>
-                <p className="text-gray-300 font-light leading-relaxed mb-6">
-                  I&apos;m currently open to software development opportunities, technical collaborations, and community management roles.
+                <h3 className="text-2xl font-bold text-white mb-3">Let&apos;s talk about your next project</h3>
+                <p className="text-gray-300 font-light leading-relaxed">
+                  I&apos;m currently open to software engineering roles, full-stack &amp; desktop development projects, and operations management.
                 </p>
               </div>
 
-              {/* Direct Email Card */}
-              <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-6 flex items-center gap-4 hover:border-accent/50 transition-colors">
-                <div className="p-3.5 rounded-xl bg-accent/10 text-accent">
-                  <Mail className="h-6 w-6" />
+              {/* Contact Channels Grid */}
+              <div className="space-y-3.5">
+                {/* Direct Email Card */}
+                <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-5 flex items-center justify-between hover:border-accent/50 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-accent/10 text-accent">
+                      <Mail className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">Email Address</p>
+                      <a
+                        href="mailto:smswad2002@gmail.com"
+                        className="text-white font-medium text-sm sm:text-base hover:text-accent transition-colors break-all"
+                      >
+                        smswad2002@gmail.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">Direct Email</p>
-                  <a
-                    href="mailto:smswad2002@gmail.com"
-                    className="text-white font-medium text-base hover:text-accent transition-colors break-all"
+
+                {/* Direct Phone Card */}
+                <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-5 flex items-center justify-between hover:border-accent/50 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">Direct Phone</p>
+                      <a
+                        href={`tel:${phoneNumber}`}
+                        className="text-white font-medium text-sm sm:text-base hover:text-accent transition-colors font-mono"
+                      >
+                        {displayPhone}
+                      </a>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(displayPhone)}
+                    title="Copy phone number"
+                    className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-700 transition-colors"
                   >
-                    smswad2002@gmail.com
+                    {copiedPhone ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                  </button>
+                </div>
+
+                {/* WhatsApp Direct Link Card */}
+                <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-5 flex items-center justify-between hover:border-accent/50 transition-colors">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 rounded-xl bg-green-500/10 text-green-400">
+                      <MessageCircle className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">WhatsApp Instant Chat</p>
+                      <a
+                        href={whatsappUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white font-medium text-sm sm:text-base hover:text-accent transition-colors font-mono flex items-center gap-1.5"
+                      >
+                        {displayPhone}
+                        <ExternalLink className="h-3 w-3 text-gray-500" />
+                      </a>
+                    </div>
+                  </div>
+                  <a
+                    href={whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-green-500/20 text-green-300 border border-green-500/30 hover:bg-green-500 hover:text-navy-900 transition-all"
+                  >
+                    Chat Now
                   </a>
                 </div>
               </div>
 
-              {/* Social Connect Links */}
-              <div>
-                <p className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-4">Social Profiles</p>
-                <div className="flex flex-wrap gap-4">
+              {/* Social Connect Profiles */}
+              <div className="pt-2">
+                <p className="text-xs font-mono text-gray-400 uppercase tracking-wider mb-3">Connect on Social Profiles</p>
+                <div className="flex flex-wrap gap-3">
                   <a
                     href="https://github.com/Smswad"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-sm font-medium"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-xs font-medium"
                   >
                     <GithubIcon />
                     GitHub
-                    <ExternalLink className="h-3.5 w-3.5 text-gray-500" />
+                    <ExternalLink className="h-3 w-3 text-gray-500" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/shahilmahmudswad/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-sm font-medium"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-xs font-medium"
                   >
                     <LinkedinIcon />
                     LinkedIn
-                    <ExternalLink className="h-3.5 w-3.5 text-gray-500" />
+                    <ExternalLink className="h-3 w-3 text-gray-500" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/swadtheboss.2002/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-navy-800/60 border border-gray-700/60 text-gray-200 hover:text-white hover:border-accent hover:bg-navy-800 transition-all text-xs font-medium"
+                  >
+                    <FacebookIcon />
+                    Facebook
+                    <ExternalLink className="h-3 w-3 text-gray-500" />
                   </a>
                 </div>
               </div>
@@ -143,7 +250,7 @@ export default function Contact() {
                   <CheckCircle className="h-14 w-14 text-accent mx-auto" />
                   <h3 className="text-2xl font-bold text-white">Thank You!</h3>
                   <p className="text-gray-300 font-light text-sm max-w-sm mx-auto">
-                    Your message has been recorded. I&apos;ll get back to you as soon as possible at <span className="text-accent">{formData.email}</span>!
+                    Your message has been safely received. I&apos;ll get back to you shortly!
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -196,7 +303,7 @@ export default function Contact() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Hi Shahil, I'd like to discuss a project..."
+                      placeholder="Hi Shahil, I'd like to discuss an opportunity or project..."
                       className="w-full px-4 py-3 rounded-xl bg-navy-900/80 border border-gray-700/80 text-white placeholder-gray-500 focus:outline-none focus:border-accent text-sm transition-colors resize-none"
                     ></textarea>
                   </div>
