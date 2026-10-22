@@ -122,9 +122,6 @@ export default function Footer() {
           <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
         </div>
 
-        <p className="text-gray-400 text-xs">
-          Built with <span className="text-accent">Next.js</span>, <span className="text-accent">Tailwind CSS</span> &amp; <span className="text-accent">Supabase</span>
-        </p>
         <p className="mt-2 text-gray-500 text-xs">
           &copy; {currentYear} Shahil Mahmud Swad. All rights reserved.
         </p>
