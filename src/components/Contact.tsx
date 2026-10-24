@@ -96,7 +96,8 @@ export default function Contact() {
     setLoading(false);
 
     if (supabaseError) {
-      setError('Something went wrong. Please try again or email me directly.');
+      console.error('Supabase contact submission error:', supabaseError);
+      setError(supabaseError.message || 'Something went wrong. Please try again or email me directly.');
     } else {
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
