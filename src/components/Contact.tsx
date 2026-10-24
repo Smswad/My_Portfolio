@@ -73,13 +73,21 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copiedPhone, setCopiedPhone] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
+  const emailAddress = "smswad2002@gmail.com";
   const phoneNumber = "+8801768007685";
   const displayPhone = "01768007685";
   const whatsappUrl = "https://wa.me/8801768007685";
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
+  const copyEmail = () => {
+    navigator.clipboard.writeText(emailAddress);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const copyPhone = () => {
+    navigator.clipboard.writeText(displayPhone);
     setCopiedPhone(true);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
@@ -133,26 +141,33 @@ export default function Contact() {
               <div className="space-y-3.5">
                 {/* Direct Email Card */}
                 <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-5 flex items-center justify-between hover:border-accent/50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10 text-accent">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="p-3 rounded-xl bg-accent/10 text-accent shrink-0">
                       <Mail className="h-5 w-5" />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-xs font-mono text-gray-400 uppercase tracking-wider">Email Address</p>
                       <a
-                        href="mailto:smswad2002@gmail.com"
+                        href={`mailto:${emailAddress}`}
                         className="text-white font-medium text-sm sm:text-base hover:text-accent transition-colors break-all"
                       >
-                        smswad2002@gmail.com
+                        {emailAddress}
                       </a>
                     </div>
                   </div>
+                  <button
+                    onClick={copyEmail}
+                    title="Copy email address"
+                    className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-700 transition-colors shrink-0 ml-2"
+                  >
+                    {copiedEmail ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
+                  </button>
                 </div>
 
                 {/* Direct Phone Card */}
                 <div className="bg-navy-800/50 border border-gray-700/50 rounded-2xl p-5 flex items-center justify-between hover:border-accent/50 transition-colors">
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400">
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 shrink-0">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
@@ -165,13 +180,22 @@ export default function Contact() {
                       </a>
                     </div>
                   </div>
-                  <button
-                    onClick={() => copyToClipboard(displayPhone)}
-                    title="Copy phone number"
-                    className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-700 transition-colors"
-                  >
-                    {copiedPhone ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
-                  </button>
+                  <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                    <a
+                      href={`tel:${phoneNumber}`}
+                      title="Call directly"
+                      className="p-2 rounded-lg text-gray-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"
+                    >
+                      <Phone className="h-4 w-4" />
+                    </a>
+                    <button
+                      onClick={copyPhone}
+                      title="Copy phone number"
+                      className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-700 transition-colors"
+                    >
+                      {copiedPhone ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                    </button>
+                  </div>
                 </div>
 
                 {/* WhatsApp Direct Link Card */}
