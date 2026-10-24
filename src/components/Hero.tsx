@@ -97,8 +97,8 @@ export default function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4" />
               </a>
               <a
-                href="/resume.pdf"
-                download="Shahil_Mahmud_Swad_Dev_CV.pdf"
+                href="/Shahil_Mahmud_Swad_Resume.pdf"
+                download="Shahil_Mahmud_Swad_Resume.pdf"
                 id="hero-resume-btn"
                 className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold rounded-full border border-accent/60 text-accent hover:bg-accent/10 transition-all duration-300 hover:scale-105 shadow-md shadow-accent/10"
               >

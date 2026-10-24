@@ -58,8 +58,8 @@ export default function Resume() {
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 ml-12 md:ml-0">
               <a
-                href="/resume.pdf"
-                download="Shahil_Mahmud_Swad_Dev_CV.pdf"
+                href="/Shahil_Mahmud_Swad_Resume.pdf"
+                download="Shahil_Mahmud_Swad_Resume.pdf"
                 id="download-cv-btn"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold
                            bg-accent text-[#0B1B3A] hover:bg-blue-400 transition-all duration-300
@@ -70,7 +70,7 @@ export default function Resume() {
               </a>
 
               <a
-                href="/resume.pdf"
+                href="/Shahil_Mahmud_Swad_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 id="view-cv-btn"
@@ -105,14 +105,14 @@ export default function Resume() {
               <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700/50 mb-3 text-xs font-mono text-gray-400">
                 <div className="flex items-center gap-2">
                   <FileText className="h-4 w-4 text-accent" />
-                  <span>Shahil_Mahmud_Swad_Dev_CV.pdf</span>
+                  <span>Shahil_Mahmud_Swad_Resume.pdf</span>
                 </div>
                 <span className="text-gray-500 hidden sm:inline">PDF Document Preview</span>
               </div>
 
               <div className="relative w-full h-[600px] sm:h-[750px] md:h-[850px] rounded-xl overflow-hidden bg-navy-900">
                 <iframe
-                  src="/resume.pdf#toolbar=0"
+                  src="/Shahil_Mahmud_Swad_Resume.pdf#toolbar=0"
                   className="w-full h-full border-0 rounded-xl"
                   title="Shahil Mahmud Swad CV Preview"
                 />
@@ -124,8 +124,8 @@ export default function Resume() {
                     You can download the CV directly or view it in a new browser tab.
                   </p>
                   <a
-                    href="/resume.pdf"
-                    download="Shahil_Mahmud_Swad_Dev_CV.pdf"
+                    href="/Shahil_Mahmud_Swad_Resume.pdf"
+                    download="Shahil_Mahmud_Swad_Resume.pdf"
                     className="px-6 py-2.5 bg-accent text-[#0B1B3A] font-semibold rounded-full text-sm"
                   >
                     Download CV PDF
