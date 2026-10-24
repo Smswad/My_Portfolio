@@ -1,7 +1,7 @@
 import React from 'react';
 import LogoutButton from './LogoutButton';
 import { supabase } from '@/lib/supabase';
-import { Mail, MessageSquare, Inbox, User, Clock } from 'lucide-react';
+import { Mail, MessageSquare, Inbox, User, Clock, ExternalLink } from 'lucide-react';
 
 export const revalidate = 0;
 
@@ -109,6 +109,7 @@ export default async function AdminDashboard() {
                   `Hi ${msg.name},\n\nThank you for reaching out!\n\n---\nYour original message:\n"${msg.message}"\n---\n\nBest regards,\nShahil Mahmud Swad`
                 );
                 const mailtoHref = `mailto:${msg.email}?subject=${replySubject}&body=${replyBody}`;
+                const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(msg.email)}&su=${replySubject}&body=${replyBody}`;
 
                 return (
                   <div
@@ -142,15 +143,27 @@ export default async function AdminDashboard() {
                           <p className="text-xs text-gray-500 font-mono">{time}</p>
                         </div>
 
-                        {/* Reply button */}
+                        {/* Reply via Gmail button */}
                         <a
-                          href={mailtoHref}
+                          href={gmailHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold
                                      bg-accent text-[#0B1B3A] hover:bg-blue-400 transition-all duration-200
                                      shadow-md hover:shadow-accent/30 whitespace-nowrap"
                         >
                           <Mail className="h-3.5 w-3.5" aria-hidden="true" />
-                          Reply via Email
+                          Reply via Gmail
+                          <ExternalLink className="h-3 w-3 opacity-70" aria-hidden="true" />
+                        </a>
+
+                        {/* Standard Default Mail Client fallback */}
+                        <a
+                          href={mailtoHref}
+                          title="Open default email app"
+                          className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-navy-700/60 border border-gray-700 transition-colors"
+                        >
+                          <Mail className="h-3.5 w-3.5" aria-hidden="true" />
                         </a>
                       </div>
                     </div>
